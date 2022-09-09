@@ -4,7 +4,7 @@
 
 ## Zappa - Serverless Python
 
-[![Build Status](https://travis-ci.org/zappa/Zappa.svg)](https://travis-ci.org/zappa/Zappa)
+[![CI](https://github.com/zappa/Zappa/actions/workflows/ci.yaml/badge.svg?branch=master&event=push)](https://github.com/zappa/Zappa/actions/workflows/ci.yaml)
 [![Coverage](https://img.shields.io/coveralls/zappa/Zappa.svg)](https://coveralls.io/github/zappa/Zappa)
 [![PyPI](https://img.shields.io/pypi/v/Zappa.svg)](https://pypi.python.org/pypi/zappa)
 [![Slack](https://img.shields.io/badge/chat-slack-ff69b4.svg)](https://zappateam.slack.com/)
@@ -134,7 +134,7 @@ __Awesome!__
 
 ## Installation and Configuration
 
-_Before you begin, make sure you are running Python 3.6/3.7/3.8 and you have a valid AWS account and your [AWS credentials file](https://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs) is properly installed._
+_Before you begin, make sure you are running Python 3.6/3.7/3.8/3.9 and you have a valid AWS account and your [AWS credentials file](https://blogs.aws.amazon.com/security/post/Tx3D6U6WSFGOK2H/A-New-and-Standardized-Way-to-Manage-Credentials-in-the-AWS-SDKs) is properly installed._
 
 **Zappa** can easily be installed through pip, like so:
 
@@ -397,7 +397,7 @@ For instance, suppose you have a basic application in a file called "my_app.py",
 
 Any remote print statements made and the value the function returned will then be printed to your local console. **Nifty!**
 
-You can also invoke interpretable Python 3.6/3.7/3.8 strings directly by using `--raw`, like so:
+You can also invoke interpretable Python 3.6/3.7/3.8/3.9 strings directly by using `--raw`, like so:
 
     $ zappa invoke production "print(1 + 2 + 3)" --raw
 
@@ -419,8 +419,6 @@ For commands which have their own arguments, you can also pass the command in as
 Commands which require direct user input, such as `createsuperuser`, should be [replaced by commands](http://stackoverflow.com/a/26091252) which use `zappa invoke <env> --raw`.
 
 For more Django integration, take a look at the [zappa-django-utils](https://github.com/Miserlou/zappa-django-utils) project.
-
-_(Please note that commands which take over 30 seconds to execute may time-out preventing output from being returned - but the command may continue to run. See [this related issue](https://github.com/Miserlou/Zappa/issues/205#issuecomment-236391248) for a work-around.)_
 
 ### SSL Certification
 
@@ -930,7 +928,7 @@ to change Zappa's behavior. Use these at your own risk!
         "role_name": "MyLambdaRole", // Name of Zappa execution role. Default <project_name>-<env>-ZappaExecutionRole. To use a different, pre-existing policy, you must also set manage_roles to false.
         "role_arn": "arn:aws:iam::12345:role/app-ZappaLambdaExecutionRole", // ARN of Zappa execution role. Default to None. To use a different, pre-existing policy, you must also set manage_roles to false. This overrides role_name. Use with temporary credentials via GetFederationToken.
         "route53_enabled": true, // Have Zappa update your Route53 Hosted Zones when certifying with a custom domain. Default true.
-        "runtime": "python3.6", // Python runtime to use on Lambda. Can be one of "python3.6", "python3.7" or "python3.8". Defaults to whatever the current Python being used is.
+        "runtime": "python3.6", // Python runtime to use on Lambda. Can be one of "python3.6", "python3.7", "python3.8", or "python3.9". Defaults to whatever the current Python being used is.
         "s3_bucket": "dev-bucket", // Zappa zip bucket,
         "slim_handler": false, // Useful if project >50M. Set true to just upload a small handler to Lambda and load actual project from S3 at runtime. Default false.
         "settings_file": "~/Projects/MyApp/settings/dev_settings.py", // Server side settings file location,
